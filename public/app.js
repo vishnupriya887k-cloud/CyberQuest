@@ -237,10 +237,12 @@ $("adminLoginForm").addEventListener("submit", async (event) => {
   }
 });
 
-async function adminApi(url) {
+async function adminApi(url, options = {}) {
   return api(url, {
+    ...options,
     headers: {
-      Authorization: `Bearer ${state.adminToken}`
+      Authorization: `Bearer ${state.adminToken}`,
+      ...(options.headers || {})
     }
   });
 }
