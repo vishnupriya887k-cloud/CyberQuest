@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberQuest | Technical Quiz</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="background-glow glow-one"></div>
+  <div class="background-glow glow-two"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">CQ</span>
+      <div>
+        <strong>CYBERQUEST</strong>
+        <small>Technical Quiz</small>
+      </div>
+    </div>
+    <button class="admin-link" id="adminOpenBtn">Admin</button>
+  </header>
+
+  <main>
+    <!-- START -->
+    <section id="startScreen" class="screen active">
+      <div class="hero-card">
+        <div class="badge">TECHNICAL EVENT</div>
+        <h1>Cyber<span>Quest</span></h1>
+        <p class="subtitle">Test your technical knowledge. Think fast. Answer smart.</p>
+
+        <div class="info-grid">
+          <div class="info-box">
+            <b>15</b>
+            <span>Questions</span>
+          </div>
+          <div class="info-box">
+            <b>10:00</b>
+            <span>Time Limit</span>
+          </div>
+          <div class="info-box">
+            <b>1×</b>
+            <span>Team Attempt</span>
+          </div>
+        </div>
+
+        <form id="startForm">
+          <label for="teamName">Team Name</label>
+          <input id="teamName" maxlength="80" placeholder="Enter your team name" autocomplete="off" required />
+          <button class="primary-btn" type="submit">START QUIZ →</button>
+        </form>
+
+        <p class="warning">⚠ A team can participate only once. Make sure all team members are ready before starting.</p>
+        <div id="startError" class="error"></div>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="quizScreen" class="screen">
+      <div class="quiz-header">
+        <div>
+          <div class="small-label">TEAM</div>
+          <strong id="quizTeamName">—</strong>
+        </div>
+        <div class="timer" id="timer">10:00</div>
+      </div>
+
+      <div class="progress-row">
+        <span id="questionCounter">Question 1 of 15</span>
+        <div class="progress-track">
+          <div id="progressBar" class="progress-bar"></div>
+        </div>
+      </div>
+
+      <div class="question-card">
+        <div class="question-number" id="questionNumber">01</div>
+        <h2 id="questionText"></h2>
+        <div id="options" class="options"></div>
+      </div>
+
+      <div class="quiz-actions">
+        <button id="prevBtn" class="secondary-btn">← Previous</button>
+        <button id="nextBtn" class="primary-btn">Next →</button>
+      </div>
+    </section>
+
+    <!-- RESULT -->
+    <section id="resultScreen" class="screen">
+      <div class="result-card">
+        <div class="result-icon">✓</div>
+        <div class="badge">QUIZ SUBMITTED</div>
+        <h1>CyberQuest Complete</h1>
+        <p id="resultMessage"></p>
+
+        <div class="result-stats">
+          <div>
+            <span>Score</span>
+            <strong id="resultScore">0/15</strong>
+          </div>
+          <div>
+            <span>Time Taken</span>
+            <strong id="resultTime">00:00</strong>
+          </div>
+          <div>
+            <span>Status</span>
+            <strong id="resultStatus">Completed</strong>
+          </div>
+        </div>
+
+        <p class="result-note">Your result has been securely saved to the CyberQuest database.</p>
+      </div>
+    </section>
+
+    <!-- ADMIN LOGIN -->
+    <section id="adminLoginScreen" class="screen">
+      <div class="admin-card">
+        <button class="close-btn" id="adminCloseBtn">×</button>
+        <div class="badge">ADMIN PANEL</div>
+        <h1>Admin Login</h1>
+        <p>Sign in to view CyberQuest results.</p>
+        <form id="adminLoginForm">
+          <input id="adminUsername" placeholder="Username" autocomplete="username" required />
+          <input id="adminPassword" type="password" placeholder="Password" autocomplete="current-password" required />
+          <button class="primary-btn" type="submit">LOGIN</button>
+        </form>
+        <div id="adminLoginError" class="error"></div>
+      </div>
+    </section>
+
+    <!-- ADMIN DASHBOARD -->
+    <section id="adminScreen" class="screen">
+      <div class="admin-dashboard">
+        <div class="dashboard-top">
+          <div>
+            <div class="badge">CYBERQUEST ADMIN</div>
+            <h1>Results Dashboard</h1>
+          </div>
+          <div class="dashboard-actions">
+            <button id="refreshBtn" class="secondary-btn">↻ Refresh</button>
+            <button id="exportBtn" class="secondary-btn">↓ Export CSV</button>
+            <button id="logoutBtn" class="danger-btn">Logout</button>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div><span>Total Teams</span><strong id="statTotal">0</strong></div>
+          <div><span>Completed</span><strong id="statCompleted">0</strong></div>
+          <div><span>Time Up</span><strong id="statTimeUp">0</strong></div>
+          <div><span>In Progress</span><strong id="statStarted">0</strong></div>
+        </div>
+
+        <div class="table-card">
+          <div class="table-toolbar">
+            <input id="searchInput" placeholder="Search team name..." />
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Team Name</th>
+                  <th>Mark</th>
+                  <th>Time Taken</th>
+                  <th>Status</th>
+                  <th>Started</th>
+                </tr>
+              </thead>
+              <tbody id="resultsBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
