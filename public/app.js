@@ -297,13 +297,41 @@ function renderResults() {
         <td>${time}</td>
         <td><span class="status ${team.status}">${statusText}</span></td>
         <td>${escapeHtml(started)}</td>
+        <td>
+          <button class="delete-btn" data-team-id="${team._id}" data-team-name="${escapeHtml(team.teamName)}">
+            Delete
+          </button>
+        </td>
       </tr>
     `;
   }).join("");
 
   if (!rows.length) {
     $("resultsBody").innerHTML =
-      `<tr><td colspan="6">No teams found.</td></tr>`;
+      `<tr><td colspan="7">No teams found.</td></tr>`;
+    return;
+  }
+
+  document.querySelectorAll(".delete-btn").forEach(button => {
+    button.addEventListener("click", () => deleteTeam(button.dataset.teamId, button.dataset.teamName));
+  });
+}
+
+async function deleteTeam(teamId, teamName) {
+  const confirmed = confirm(
+    `Delete the result for "${teamName}"?\\n\\nThis will permanently remove the team from the database.`
+  );
+
+  if (!confirmed) return;
+
+  try {
+    await adminApi(`/api/admin/results/${encodeURIComponent(teamId)}`, {
+      method: "DELETE"
+    });
+
+    await loadAdminDashboard();
+  } catch (error) {
+    alert(error.message);
   }
 }
 
