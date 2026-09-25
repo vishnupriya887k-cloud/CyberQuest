@@ -24,108 +24,93 @@ app.use(express.static(path.join(__dirname, "public")));
 const questionBank = [
   {
     id: 1,
-    question: "Which protocol is primarily used to securely transfer web pages over the Internet?",
-    options: ["HTTP", "HTTPS", "FTP", "SMTP"],
+    question: "A penetration tester discovers that a server accepts a user-controlled parameter such as file=../../../../etc/passwd. The application returns the contents of the targeted file. Which vulnerability has been demonstrated?",
+    options: ["Server-Side Request Forgery (SSRF)", "Local File Inclusion / Path Traversal", "Cross-Site Scripting", "XML External Entity (XXE)"],
     answer: 1
   },
   {
     id: 2,
-    question: "Which of the following is a symmetric encryption algorithm?",
-    options: ["RSA", "ECC", "AES", "DSA"],
-    answer: 2
+    question: "During an internal security assessment, a tester captures an NTLM authentication exchange and later successfully authenticates to another service using the captured exchange without knowing the user's plaintext password. Which attack technique is most closely associated with this scenario?",
+    options: ["Pass-the-Hash", "Credential Stuffing", "Password Spraying", "DNS Tunneling"],
+    answer: 0
   },
   {
     id: 3,
-    question: "What does CIA stand for in information security?",
-    options: [
-      "Confidentiality, Integrity, Availability",
-      "Control, Inspection, Authentication",
-      "Cybersecurity, Intelligence, Access",
-      "Confidentiality, Inspection, Authorization"
-    ],
-    answer: 0
+    question: "During a penetration test, an analyst finds that a web server makes HTTP requests to a URL supplied by the user. The tester demonstrates that the server can access an internal cloud metadata endpoint that is unreachable directly from the Internet. What vulnerability is being demonstrated?",
+    options: ["Blind SQL Injection", "Server-Side Request Forgery (SSRF)", "Cross-Site Request Forgery (CSRF)", "HTTP Request Smuggling"],
+    answer: 1
   },
   {
     id: 4,
-    question: "Which device is commonly used to filter network traffic based on security rules?",
-    options: ["Firewall", "Repeater", "Hub", "Printer"],
-    answer: 0
+    question: "A web application accepts a user-controlled URL and retrieves the requested resource from its own server. During testing, the application can reach services that are inaccessible from the tester's external network. What security issue should the tester investigate?",
+    options: ["Cross-Site Request Forgery", "Server-side request abuse", "Client-side template injection", "Session fixation"],
+    answer: 1
   },
   {
     id: 5,
-    question: "Which attack attempts to overwhelm a service with a large amount of traffic?",
-    options: ["Phishing", "DDoS", "SQL Injection", "Shoulder Surfing"],
+    question: "During an internal assessment, a tester obtains an authentication value associated with a Windows account. Instead of recovering the original password, the tester uses the obtained value to authenticate to another system where the account has access. Which technique best describes this?",
+    options: ["Password spraying", "Pass-the-Hash", "Kerberoasting", "Credential stuffing"],
     answer: 1
   },
   {
     id: 6,
-    question: "Which HTTP status code means 'Not Found'?",
-    options: ["200", "301", "404", "500"],
-    answer: 2
+    question: "During a security assessment, an application uses a JWT for authentication. The tester modifies the token's claims and finds that the server accepts the modified token without properly validating its signature. What security issue is most directly indicated?",
+    options: ["Broken access control", "Improper JWT signature validation", "SQL injection", "DNS poisoning"],
+    answer: 1
   },
   {
     id: 7,
-    question: "Which technology is used to store a password securely instead of storing the original password?",
-    options: ["Hashing", "Plain text", "Encoding", "Compression"],
+    question: "A tester discovers that an application generates password-reset tokens using a predictable value based on the user's timestamp. What is the primary security concern?",
+    options: ["Weak randomness allowing token prediction", "Cross-Site Request Forgery", "DNS tunneling", "Buffer overflow"],
     answer: 0
   },
   {
     id: 8,
-    question: "What is the main purpose of multi-factor authentication?",
-    options: [
-      "To increase Internet speed",
-      "To provide more than one verification factor",
-      "To compress passwords",
-      "To hide a website"
-    ],
+    question: "An internal application uses an account with excessive database privileges. A SQL injection vulnerability is discovered that allows database queries to execute under that account. Which security principle was violated, increasing the potential impact?",
+    options: ["Defense in depth", "Least privilege", "Non-repudiation", "Data minimization"],
     answer: 1
   },
   {
     id: 9,
-    question: "Which language is commonly used to query relational databases?",
-    options: ["HTML", "CSS", "SQL", "XML"],
-    answer: 2
+    question: "A web application allows a user to modify the user_id parameter in a request and access another user's private profile without performing an authorization check. What vulnerability does this most closely represent?",
+    options: ["Insecure Direct Object Reference / Broken Access Control", "Server-Side Request Forgery", "Cross-Site Scripting", "XML External Entity"],
+    answer: 0
   },
   {
     id: 10,
-    question: "Which attack injects malicious SQL statements into an application's database query?",
-    options: ["SQL Injection", "DDoS", "Brute Force", "DNS Spoofing"],
+    question: "During an authorized penetration test, a tester discovers that a web application accepts serialized objects from users and automatically deserializes them without validating their integrity or type. Why is this particularly dangerous?",
+    options: ["It can potentially lead to unauthorized object manipulation or code execution", "It only causes slower DNS resolution", "It prevents HTTPS from functioning", "It automatically exposes the user's IP address"],
     answer: 0
   },
   {
     id: 11,
-    question: "Which port is the default port for HTTPS?",
-    options: ["21", "25", "80", "443"],
-    answer: 3
+    question: "What does the TOCTOU vulnerability class exploit?",
+    options: ["Weak password policies", "Race condition between checking and using a resource", "Buffer overflow in stack memory", "Insecure cookie storage"],
+    answer: 1
   },
   {
     id: 12,
-    question: "What is phishing primarily designed to do?",
-    options: [
-      "Improve network speed",
-      "Trick users into revealing sensitive information",
-      "Encrypt a hard disk",
-      "Repair a server"
-    ],
+    question: "What is Kerberoasting primarily used to attack?",
+    options: ["Web session cookies", "Service account credentials via Kerberos tickets", "DNS cache records", "SSL certificates"],
     answer: 1
   },
   {
     id: 13,
-    question: "Which data structure follows the LIFO principle?",
-    options: ["Queue", "Stack", "Linked List", "Tree"],
+    question: "Which attack relays a victim's authentication hash to a server without cracking the actual password?",
+    options: ["Rainbow table attack", "Pass-the-Hash", "Brute force attack", "Dictionary attack"],
     answer: 1
   },
   {
     id: 14,
-    question: "Which algorithm is commonly used to find the shortest path from a source vertex in a graph with non-negative edge weights?",
-    options: ["Dijkstra's algorithm", "Kruskal's algorithm", "KMP", "Binary Search"],
-    answer: 0
+    question: "What does IDOR stand for?",
+    options: ["Internal Data Object Retrieval", "Insecure Direct Object Reference", "Indirect Denial of Resource", "Isolated Domain Object Request"],
+    answer: 1
   },
   {
     id: 15,
-    question: "Which DNS record type maps a domain name to an IPv4 address?",
-    options: ["MX", "CNAME", "A", "TXT"],
-    answer: 2
+    question: "In SSL Stripping attacks, what does the attacker primarily manipulate?",
+    options: ["DNS records", "Downgrading HTTPS to HTTP during connection setup", "TLS certificate chains", "Browser cookies"],
+    answer: 1
   }
 ];
 
